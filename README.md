@@ -22,4 +22,7 @@ Hola, bienvenido a **Auronix University**, un espacio donde encontrarás una bas
   .justificado{
      text-align:justify;
     }
+  .wrapper header li a{
+    display:none;
+  }
 </style>
