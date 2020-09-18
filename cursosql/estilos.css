@@ -1,0 +1,138 @@
+<style>
+    *{
+        box-sizing:border-box !important;    
+    }
+    body{
+        padding:0px !important;
+    }
+    .wrapper{
+        width:100% !important;
+
+    }
+    .wrapper header, .wrapper footer
+    {
+        display:none !important;
+    }
+    .wrapper section{
+        float:none !important;
+        width:80%;
+        padding:0 0.5em !important;
+        margin:0px auto;
+        margin-top:80px;
+
+    }
+    .encabezado{
+        background-color:black;
+        color:white;
+        position:fixed;
+        width:100%;
+        margin:0 0;
+        left:0px;
+        top:0px;
+        z-index:100;
+
+    }
+    .h-izq{
+        width:80%;
+        float:left;
+        margin:0px;
+    }
+    .h-der{
+        text-align:right;
+        width:20%;
+        float:right;
+        padding:5px;
+        margin:0px;
+    }
+    .encabezado div img{
+        width:40px;
+        border:none;
+        margin:0px;
+    }
+    .titulo-h1{
+        color:white !important;
+        border:none !important;
+        margin:0 !important;
+        padding:15px !important;
+    }
+    code{
+        background-color: white;
+        border-radius:3px;
+        padding:3px;
+        box-shadow: 0px 0px 2px black;
+    }
+    pre code{
+        box-shadow: 0px 0px 0px black !important;
+    }
+    .justificado{
+        text-align:justify;
+    }
+    .img-centrada{
+        text-align:center;
+        margin:2em 1em;
+    }
+    .img-centrada img{
+        width:100%;
+    }
+    .resumen{
+        width:100%;
+        margin:0px auto;
+        /*background:#ebf3fc;*/
+        background:#000;
+        color:white;
+        padding:1em;
+        border-radius:10px;
+        text-align:justify;
+        box-shadow:0px 0px 5px gray;
+        position:relative;
+        padding-left:25px;
+    }
+    .sugerencia{
+        width:100%;
+        margin:0px auto;
+        /*background:#ebf3fc;*/
+        background:#000;
+        color:orange;
+        padding:1em;
+        border-radius:10px;
+        text-align:justify;
+        box-shadow:0px 0px 5px gray;
+        position:relative;
+        padding-left:25px;
+        text-align:center;
+    }
+    .sugerencia a:link,
+    .sugerencia a:visited
+    {
+        color:orange;
+    }
+    .resumen img, .sugerencia img{
+        width:40px;
+        position:absolute;
+        left:-20px;
+        top:15px;
+        border:none !important;
+        box-shadow:none !important;
+        margin:0px !important;  
+        padding:2px;  
+    }
+    @media print, screen and (max-width: 720px)
+    {
+        .wrapper section{
+            margin-top:120px !important;
+             width:90%;
+        }
+        .h-izq{
+            width:60% !important;
+            margin:0px;
+        }
+        .h-der
+        {
+            width:40% !important;
+            margin:0px;
+        }
+        .titulo-h1{
+            font-size:18px;
+        }
+    }
+</style>
