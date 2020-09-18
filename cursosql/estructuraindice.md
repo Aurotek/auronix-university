@@ -5,7 +5,7 @@
     </div>
     <div class="h-der">
         <a href="#"><img src="imagenes/previous.png"/></a>
-        <a href="/"><img src="imagenes/home.png"/></a>
+        <a href="../"><img src="imagenes/home.png"/></a>
         <a href="indiceslentos.html"><img src="imagenes/next.png"/></a>
     </div>   
 </div>
