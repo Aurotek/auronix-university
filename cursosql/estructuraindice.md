@@ -142,15 +142,15 @@ Dadas las siguientes llaves, construye el Btree y responde las preguntas. Recuer
     <li>¿Cuál es el costo promedio para encontrar una llave en ambos árboles?</li>
     </ul>
 </div>
+<br/>
+<div class="sugerencia">
+    <img src="imagenes/test.png">
+    <a href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html" target="_blank">Experimenta con este simulador virtual de un BTree para comprender mejor el tema</a>    
+</div>
 <br/><br/>
-
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <style>
     *{
         box-sizing:border-box !important;
     }
 </style>
-<div class="sugerencia">
-    <img src="imagenes/test.png">
-    <a href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html" target="_blank">Experimenta con este simulador virtual de un BTree para comprender mejor el tema</a>    
-</div>
