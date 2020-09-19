@@ -41,7 +41,7 @@ Específicamente, los índices BTree utilizan una lista doblemente enlazada para
 </div>
 
 {:.justificado}
-La *figura 1.1* muestra la conexión que existe entre los nodos hoja (parte izquierda) y los registros de la tabla (parte derecha), nota que la tabla fue indexada por la columna 2, de modo que este campo es el que se toma en cuenta para construir los nodos hoja del índice, cada entrada en uno de la lista enlazada consta de al menos dos campos, la llave y un campo especial llamado rowid cuyo objetivo es referenciar la dirección física donde se encuentra almacenado el registro. A diferencia del índice, los datos de la tabla están almacenados en una estructura que no está ordenada, no existe relación entre los registros almacenados en el mismo bloque de la tabla, ni existen conexiones entre los bloques.
+La *figura 1.1* muestra la conexión que existe entre los nodos hoja (parte izquierda) y los registros de la tabla (parte derecha), nota que la tabla fue indexada por la columna 2, de modo que este campo es el que se toma en cuenta para construir los nodos hoja del índice, cada entrada en un nodo de la lista enlazada consta de al menos dos campos, la llave y un campo especial llamado rowid cuyo objetivo es referenciar la dirección física donde se encuentra almacenado el registro. A diferencia del índice, los datos de la tabla están almacenados en una estructura que no está ordenada, no existe relación entre los registros almacenados en el mismo bloque de la tabla, ni existen conexiones entre los bloques.
 
 ## Árbol de búsqueda BTREE
 
@@ -127,13 +127,22 @@ En matemáticas, el logaritmo base *b* de un número *N* equivale a pensar a que
 </div>
 <br/><br/>
 
-<div class="sugerencia">
-    <img src="imagenes/test.png">
-    <a href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html" target="_blank">Experimenta con este simulador virtual de un BTree para comprender mejor el tema</a>
-    
+<div class="ejercicio">
+<strong>Ejercicio:</strong><br/>
+Dadas las siguientes llaves, construye el Btree y responde las preguntas. Recuerda que puedes usar la herramienta de visualización para simular la estructura de datos.
+<br><br>
+<strong>Llaves=<code>{5, 40, 80, 20, 1, 65, 8, 5, 81, 25, 33, 39, 7, 5, 11, 19, 29, 13, 37, 44, 20}</code>
+</strong>
+<br><br>
+<ul>
+   <li> ¿Cuál es la altura del Btree si es de grado 3?</li>
+    <li>¿Cual es la raíz del Btree de grado 3?</li>
+    <li>¿Cuál es la altura del Btree si es de grado 5?</li>
+    <li>¿Cuál es la raíz del Btree de grado 5?</li>
+    <li>¿Cuál es el costo promedio para encontrar una llave en ambos árboles?</li>
+    </ul>
 </div>
-
-<br/>
+<br/><br/>
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <style>
@@ -141,3 +150,7 @@ En matemáticas, el logaritmo base *b* de un número *N* equivale a pensar a que
         box-sizing:border-box !important;
     }
 </style>
+<div class="sugerencia">
+    <img src="imagenes/test.png">
+    <a href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html" target="_blank">Experimenta con este simulador virtual de un BTree para comprender mejor el tema</a>    
+</div>
