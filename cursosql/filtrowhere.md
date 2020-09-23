@@ -45,8 +45,7 @@ Si observamos el plan de ejecución podremos constatar que la hipotésis plantea
 
 <div class="ejercicio">
     <strong>Plan de ejecución MySql</strong><br/><br/>
-    <table>
-        <thead>
+    <table class="execution-plan">
             <tr>
                 <th>id</th>
                 <th>select_type</th>
@@ -60,8 +59,6 @@ Si observamos el plan de ejecución podremos constatar que la hipotésis plantea
                 <th>filtered</th>
                 <th>Extra</th>
             </tr>
-        </thead>
-        <tbody>
             <tr>
                 <td>1</td>
                 <td>SIMPLE</td>
@@ -75,7 +72,6 @@ Si observamos el plan de ejecución podremos constatar que la hipotésis plantea
                 <td>100.0</td>
                 <td>NULL</td>
             </tr>
-        </tbody>
     </table>    
     <p>En MySql el tipo <code>const</code> equivale a <em>INDEX UNIQUE SCAN</em></p>
 </div>

@@ -125,6 +125,9 @@
         position:relative;
         padding-left:25px;
     }
+    .execution-plan{
+        width:100% !important;
+    }
     @media print, screen and (max-width: 720px)
     {
         .wrapper section{
