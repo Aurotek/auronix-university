@@ -28,8 +28,8 @@ Analicemos el comportamiento de la claúsula *where* con un ejemplo. Considere l
     apellidos VARCHAR(60) NOT NULL,
     fecha_nacimiento DATE NOT NULL,
     telefono  VARCHAR(20) NOT NULL,
-    direccion CHAR(255) NOT NULL
-    CONSTRAINT empleados_id PRIMARY KEY (id)
+    direccion CHAR(255) NOT NULL,
+    PRIMARY KEY empleados_id(id)
     );
 ```
 
@@ -79,7 +79,7 @@ Si observamos el plan de ejecución podremos constatar que la hipotésis plantea
 
 <div class="sugerencia">
     <img src="imagenes/test.png">
-    <a href="http://sqlfiddle.com/#!9/06c8ca/1/0" target="_blank">Prueba la ejecución de la consulta ejemplo haciendo click aquí.</a>    
+    <a href="http://sqlfiddle.com/#!9/16920e/1/0" target="_blank">Prueba la ejecución de la consulta ejemplo haciendo click aquí.</a>    
 </div>
 <br/>
 
@@ -92,8 +92,57 @@ Para ver el plan ejecución después de probar el link de arriba, haz click sobr
     <strong>Figura 3.1. Ver el plan de ejecución en el portal SQL Fiddle.</strong>
 </div>
 
+{:.justificado}
+Aunque se han escrito libros sobre el análasis puntual del plan de ejecución y como un DBA puede usarlo eficientemente, sigue siendo tema de toda una tésis, sin embargo, podemos rescatar datos importantes que como desarrolladores nos son de mucha utilidad para comprender y eficientar la indexación y nuestras consultas.
+
+Para obtener el plan de ejecución en cualquier manejador de BD MySql basta con inyectar el enunciado SQL al comando <code> Explain</code>, por ejemplo:
+
+```SQL
+Explain Select * from empleados where id=28;
+```
+
+### ¿Cómo leer el plan de ejecución? ###
+
+De todas las columnas resultantes en el plan de ejecución hay una de especial interés, la columna *type*, esta columna hace referencia a la forma en la que la BD busca los datos que se requieren en el enunciado SQL. Sus posibles valores son:
+
+<table class="type-execution-plan">
+    <tr>
+        <th>Valor</th>
+        <th>Significado</th>
+    </tr>
+    <tr>
+        <td>eq_ref, const</td>
+        <td>Es equivalente a la operación <em>INDEX UNIQUE SCAN</em>, obtendremos este valor cuando los criterios de búsqueda coincidan con el uso de una llave primaria o cualquier restricción de unicidad.</td>
+    </tr>
+    <tr>
+        <td>ref, range</td>
+        <td>Se refiere a la operación <em>INDEX RANGE SCAN</em>, es decir, recorre parcialmente los nodos hoja del Btree que representa al índice.</td>
+    </tr>
+    <tr>
+        <td>index</td>
+        <td>Lee el índice entero.</td>
+    </tr>
+    <tr>
+        <td>ALL</td>
+        <td>Esta operación es la menos deseable, no hace uso de ningún tipo de índice, lee todas las tuplas incluidas sus columnas y puede agregar una fuerte carga al procesador. También es conocida como <em>FULL TABLE SCAN</em>. Como desarrolladores debemos evitar que esta operación ocurra, sobre todo si la tabla tiene millones de registros.</td>
+    </tr>
+</table>
+<br/>
+<br/>
+
+
 <style>
     *{
         box-sizing:border-box !important;
+    }
+    .type-execution-plan th{
+        text-align:center !important;
+
+    }
+    .type-execution-plan td{
+        text-align:justify !important;
+    }
+    .type-execution-plan tr td:first-child{
+        font-style:italic !important;
     }
 </style>
