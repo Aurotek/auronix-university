@@ -77,7 +77,7 @@ Si observamos el plan de ejecución podremos constatar que la hipotésis plantea
 </div>
 <br/>
 
-<div class="sugerencia">
+<div class="sugerencia execution-plan">
     <img src="imagenes/test.png">
     <a href="http://sqlfiddle.com/#!9/06c8ca/1/0" target="_blank">Prueba la ejecución de la consulta ejemplo haciendo click aquí.</a>    
 </div>

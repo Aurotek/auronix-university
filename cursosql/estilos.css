@@ -126,7 +126,7 @@
         padding-left:25px;
     }
     .execution-plan{
-        width:100% !important;
+        overflow-x: scroll;
     }
     @media print, screen and (max-width: 720px)
     {
