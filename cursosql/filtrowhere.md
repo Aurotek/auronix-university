@@ -66,7 +66,7 @@ Si observamos el plan de ejecución podremos constatar que la hipotésis plantea
                 <td>1</td>
                 <td>SIMPLE</td>
                 <td>empleados</td>
-                <th><em style='color:blue;'>const</em></th>
+                <td><strong><em style='color:blue;'>const</em></strong></td>
                 <td>PRIMARY</td>
                 <td>PRIMARY</td>
                 <td>5</td>
