@@ -89,7 +89,7 @@ Los recorridos en un árbol siempre inician desde el nodo raíz, y dependiendo d
 Analicemos el recorrido en el índice para buscar una llave en el BTree que estamos tomando como ejemplo [Vea figura 1.2](#f2), Si nos enfocamos en buscar la llave **`57`** con la consulta SQL:
 
 ``` SQL
-Select * from Tabla where columna2=57
+Select * from Tabla where columna2=57;
 ```
 {:.justificado}
 Suponiendo que la *Tabla* está indexada sobre la *columna 2*, la *figura 1.4* muestra el recorrido del BTree que administra el índice.

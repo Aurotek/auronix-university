@@ -6,7 +6,7 @@
     <div class="h-der">
         <a href="estructuraindice.html"><img src="imagenes/previous.png"/></a>
         <a href="../"><img src="imagenes/home.png"/></a>
-        <a href="clausulawhere.html"><img src="imagenes/next.png"/></a>
+        <a href="filtrowhere.html"><img src="imagenes/next.png"/></a>
     </div>   
 </div>
  
