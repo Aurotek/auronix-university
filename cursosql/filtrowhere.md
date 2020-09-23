@@ -43,9 +43,9 @@ En este ejemplo el filtro *where* hace uso del índice primario ejecutando una o
 
 Si observamos el plan de ejecución podremos constatar que la hipotésis planteada sobre el uso del índice es correcta.
 
-<div class="ejercicio">
+<div class="ejercicio execution-plan">
     <strong>Plan de ejecución MySql</strong><br/><br/>
-    <table class="execution-plan">
+    <table class="">
             <tr>
                 <th>id</th>
                 <th>select_type</th>
@@ -77,7 +77,7 @@ Si observamos el plan de ejecución podremos constatar que la hipotésis plantea
 </div>
 <br/>
 
-<div class="sugerencia execution-plan">
+<div class="sugerencia">
     <img src="imagenes/test.png">
     <a href="http://sqlfiddle.com/#!9/06c8ca/1/0" target="_blank">Prueba la ejecución de la consulta ejemplo haciendo click aquí.</a>    
 </div>
