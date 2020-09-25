@@ -89,8 +89,9 @@
     .sugerencia{
         width:100%;
         margin:0px auto;
-        background:#000;
-        color:orange;
+        background:orange;
+        color:black;
+        border:solid #d98e07 2px !important;
         padding:1em;
         border-radius:10px;
         text-align:justify;
@@ -102,7 +103,7 @@
     .sugerencia a:link,
     .sugerencia a:visited
     {
-        color:orange;
+        color:black !important;
     }
     .resumen img, .sugerencia img{
         width:40px;
