@@ -178,6 +178,47 @@ Nota que la columna *type* en el plan de ejecución marca una operación *range*
     </div>
 </div>
 <br/>
+
+## Búsqueda por rangos ##
+
+{:.justificado}
+La búsqueda por rangos se implementa haciendo uso de los operadores `<, > y between`, regularmente, el uso de estos operadores dispara operaciones del tipo *INDEX RANGE SCAN*, el riesgo con esta operación es que se puede llegar a recorrer gran parte de la lista que representa a los nodos hoja, es recomendable mantener el rango escaneado lo más pequeño posible. Consideremos la ejecución de una consulta que busca saber cuantos empleados nacieron en el año 1970:
+
+```SQL
+    Select count(fecha_nacimiento) from empleados where fecha_nacimiento between '1970-01-01' and '1970-12-31';
+```
+
+<div class="sugerencia">
+    <img src="imagenes/test.png">
+    <a href="http://sqlfiddle.com/#!9/82679d/1/0" target="_blank">Prueba la ejecución de la consulta haciendo click aquí.</a>    
+</div>
+<br/>
+
+{:.justificado}
+Si ejecutamos esta consulta y observamos el plan de ejecución encontramos que se disparó una operación *ALL*, lo que significa que se escaneó toda la tabla. ¿De que forma podemos mejorar el costo de ejecución de la consulta?. Agregando un índice con repeticiones sobre el campo de *fecha_nacimiento*, podemos hacerlo de varias formas:
+
+```SQL
+    ALTER TABLE empleados ADD INDEX nacimiento(fecha_nacimiento);
+```
+
+```SQL
+    CREATE INDEX nacimiento ON empleados(fecha_nacimiento);
+```
+
+O bien desde la definición de la tabla:
+
+```SQL
+   CREATE TABLE empleados (
+   id NUMERIC NOT NULL,
+   nombre VARCHAR(60) NOT NULL,
+   apellidos VARCHAR(60) NOT NULL,
+   fecha_nacimiento DATE ,
+   tel VARCHAR(20) NOT NULL,
+   direccion CHAR(255),
+   PRIMARY KEY empleados_id(id),
+   KEY nacimiento(fecha_nacimiento)
+);
+```
 <br/><br/>
 
 <style>
