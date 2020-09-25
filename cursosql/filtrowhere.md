@@ -157,28 +157,6 @@ Nota que la columna *type* en el plan de ejecución marca una operación *range*
 {:.justificado}
 ¿Podrás explicar que ocurre en la ejecución de la consulta si cambiamos la primera parte del filtro por `id>900` ? 
 
-<div class="ejercicio">
-    <strong>Ejercicios:</strong><br/>
-    Ejecuta las siguientes consultas, observa el plan de ejecución y argumenta el resultado de la columna <em>type</em>.
-    <br/><br/>
-    <ul>
-        <li>
-            <code>Select nombre from empleados where apellidos='Perez';</code>
-        </li>
-        <li>
-            <code>Select count(*) from empleados;</code>
-        </li>
-        <li>
-            <code>Select * from empleados where id>=20 and id<=30;</code>
-        </li>
-    </ul>
-    <br/>
-    <div style="text-align:center;">
-        <a href="http://sqlfiddle.com/#!9/37b7f4/12" target="_blank">Click aquí para ejecutar las consultas</a>
-    </div>
-</div>
-<br/>
-
 ## Búsqueda por rangos ##
 
 {:.justificado}
@@ -219,7 +197,66 @@ O bien desde la definición de la tabla:
    KEY nacimiento(fecha_nacimiento)
 );
 ```
+{:.justificado}
+Ejecutando nuevamente la consulta, con el índice sobre la *fecha_nacimiento* agregado, el costo de ejecución mejora notablemente debido a que se utiliza el índice para buscar los datos. Ejecuta la consulta y compara el plan de ejecución.
+
+<div class="sugerencia">
+    <img src="imagenes/test.png">
+    <a href="http://sqlfiddle.com/#!9/ee3f0c/1/0" target="_blank">Prueba la ejecución de la consulta haciendo click aquí.</a>    
+</div>
 <br/><br/>
+
+{:.justificado}
+La tabla ahora cuenta con dos índices, uno primario (id) y otro que acepta repeticiones (fecha_nacimiento), analicemos que ocurre si lanzamos una consulta que obligue al manejador de la BD a decidir qué índice usar. Supongamos que queremos saber cuantos empleados nacieron en 1970 y su id está entre 300 y 500.
+
+```SQL
+    Select count(*) from empleados where id>300 and id<500 and fecha_nacimiento between '1970-01-01' and '1970-12-31';
+```
+Como puedes notar el predicado del filtro *where* es más complejo, entonces, como decide el manejador usar los índices en esta caso?. Probemos la consulta y analicemos el plan de ejecución:
+
+<div class="sugerencia">
+    <img src="imagenes/test.png">
+    <a href="http://sqlfiddle.com/#!9/ee3f0c/10/0" target="_blank">Prueba la ejecución de la consulta haciendo click aquí.</a>    
+</div>
+<br/><br/>
+
+<div class="img-centrada">
+    <img src="imagenes/planejecucion2.png" /><br/>
+    <strong>Figura 3.2. Plan de ejecución para filtro por id y fecha de nacimiento.</strong>
+</div>
+
+{:.justificado}
+Si observas detenidamente la figura 3.2, encontrarás que la BD consideró ambos índices, la columna *possible keys* en el plan de ejecución lo evidencia, sin embargo, el plan eligió el índice con repeticiones (*nacimiento* en la columna *key*) para encontrar los datos. Parecería que el plan de ejecución está equivocado porque el índice primario tiene solo claves únicas, pero si obligamos al motor a usar el índice primario sobre el *id*, confirmaremos que tomó la mejor decisión.
+
+Prueba la consulta forzando el uso del índice primario y compara el rendimiento.
+
+```SQL
+    Select count(*) from empleados force index(PRIMARY) where id>300 and id<500 and fecha_nacimiento between '1970-01-01' and '1970-12-31';
+```
+
+Analiza ambas consultas y argumenta, ¿Por qué crees que ocurra esto?
+
+<div class="ejercicio">
+    <strong>Ejercicios:</strong><br/>
+    Ejecuta las siguientes consultas, observa el plan de ejecución y argumenta el resultado de la columna <em>type</em>.
+    <br/><br/>
+    <ul>
+        <li>
+            <code>Select nombre from empleados where apellidos='Perez';</code>
+        </li>
+        <li>
+            <code>Select count(*) from empleados;</code>
+        </li>
+        <li>
+            <code>Select * from empleados where id>=20 and id<=30;</code>
+        </li>
+    </ul>
+    <br/>
+    <div style="text-align:center;">
+        <a href="http://sqlfiddle.com/#!9/37b7f4/12" target="_blank">Click aquí para ejecutar las consultas</a>
+    </div>
+</div>
+<br/>
 
 <style>
     *{
