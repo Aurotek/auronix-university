@@ -201,7 +201,7 @@ O bien desde la definición de la tabla:
 Ejecutando nuevamente la consulta, con el índice sobre la *fecha_nacimiento* agregado, el costo de ejecución mejora notablemente debido a que se utiliza el índice para buscar los datos. Ejecuta la consulta y compara el plan de ejecución.
 
 <div class="sugerencia">
-    <img src="imagenes/test.png" style="width:90% !important;">
+    <img src="imagenes/test.png">
     <a href="http://sqlfiddle.com/#!9/ee3f0c/1/0" target="_blank">Prueba la ejecución de la consulta haciendo click aquí.</a>    
 </div>
 <br/><br/>
@@ -221,7 +221,7 @@ Como puedes notar el predicado del filtro *where* es más complejo, entonces, co
 <br/><br/>
 
 <div class="img-centrada">
-    <img src="imagenes/planejecucion2.png" /><br/>
+    <img src="imagenes/planejecucion2.png" style="width:90% !important;" /><br/>
     <strong>Figura 3.2. Plan de ejecución para filtro por id y fecha de nacimiento.</strong>
 </div>
 
