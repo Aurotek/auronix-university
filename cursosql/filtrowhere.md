@@ -157,24 +157,26 @@ Nota que la columna *type* en el plan de ejecución marca una operación *range*
 ¿Podrás explicar que ocurre en la ejecución de la consulta si cambiamos la primera parte del filtro por `id>900` ? 
 
 <div class="ejercicio">
-<strong>Ejercicios:</strong><br/>
-Ejecuta las siguientes consultas, observa el plan de ejecución y argumenta el resultado de la columna <em>type</em>.
-<br/><br/>
-<ul>
-<li><code>Select nombre from empleados where apellidos='Perez';</code></li>
-<li>
-<code>Select count(*) from empleados;</code>
-</li>
-<li>
-    <code>Select * from empleados where id>=20 and id<=30;</code>
-</li>
-<br/>
-<div style="text-align:center;">
-    <a href="http://sqlfiddle.com/#!9/37b7f4/12" target="_blank">Click aquí para ejecutar las consultas</a>
+    <strong>Ejercicios:</strong><br/>
+    Ejecuta las siguientes consultas, observa el plan de ejecución y argumenta el resultado de la columna <em>type</em>.
+    <br/><br/>
+    <ul>
+        <li>
+            <code>Select nombre from empleados where apellidos='Perez';</code>
+        </li>
+        <li>
+            <code>Select count(*) from empleados;</code>
+        </li>
+        <li>
+            <code>Select * from empleados where id>=20 and id<=30;</code>
+        </li>
+    </ul>
+    <br/>
+    <div style="text-align:center;">
+        <a href="http://sqlfiddle.com/#!9/37b7f4/12" target="_blank">Click aquí para ejecutar las consultas</a>
+    </div>
 </div>
-</div>
 <br/>
-
 <br/><br/>
 
 <style>
