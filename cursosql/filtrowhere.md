@@ -128,8 +128,54 @@ De todas las columnas resultantes en el plan de ejecución hay una de especial i
     </tr>
 </table>
 <br/>
+
+## Búsqueda por múltiples campos ##
+
+{:.justificado}
+Es muy común escribir consultas que usen filtros sobre más de un campo, en estos casos se debe poner especial atención sobre la lógica que la BD usará para encontrar las tuplas que se requieren, si no indexamos correctamente o buscamos solo por campos que no tengan índice, corremos el riesgo de lanzar una operación *FULL ACCESS TABLE* y eso no es nada bueno cuando la tabla tiene millones de registros. El desarrollador debe cuidar que los accesos a la BD a través de las consultas SQL no terminen ejecutando esta operación.
+
+{:.justificado}
+Supongamos que queremos saber el nombre y apellido de todos los empleados que tengan un id menor a 100 y que su nombre contenga la cadena *'Juan'*. ¿Cuál es la consulta SQL para obtener los datos?.
+
+```SQL
+    Select nombre, apellidos from empleados where id<100 and nombre like '%Juan%';
+```
+¿Qué operaciones ejecutará la BD cuando mandemos la consulta?. Para responder a este cuestionamiento ejecutemos la consulta y observemos el plan de ejecución.
+
+<div class="sugerencia">
+    <img src="imagenes/test.png">
+    <a href="http://sqlfiddle.com/#!9/37b7f4/1/0" target="_blank">Prueba la ejecución de la consulta haciendo click aquí.</a>    
+</div>
 <br/>
 
+{:.justificado}
+Con base en lo aprendido hasta el momento, ¿Podemos explicar que fué lo que ocurrió en la BD cuando ejecutó la consulta?
+
+{:.justificado}
+Nota que la columna *type* en el plan de ejecución marca una operación *range* (*INDEX RANGE SCAN*), como en el predicado de la consulta aparece un campo que está indexado (el *id*), el motor de la BD toma este campo como prioridad y hace el recorrido sobre el BTree empezando en el nodo raíz y preguntadole a cada llave en ese nodo ¿Eres mayor o igual a 100?, cuando la respuesta es sí, se baja un nivel por esa rama y se repite el proceso, eventualmente llega al nodo hoja en la base del árbol que contiene la llave *100* y a partir de ahí inicia un recorrido secuencial sobre la lista enlazada hasta llegar a la llave de menor valor, la BD ejecutará para cada nodo hoja que cumpla con la restricción, una operación de acceso a la tabla a través del *RowID* y justo en ese momento tomará en cuenta la segunda parte del filtro <code><em>and nombre like 'Juan'</em></code>, lo que significa que revisará el campo *nombre* y hará un análisis sobre la cadena para determinar si cumple con la restricción que especifica el operador *like*, de ser así, devuelve ese registro como resultado de la consulta. Una vez que el recorrido llega al primer nodo hoja, la ejecución de la consulta termina.
+
+¿Podrás explicar que ocurre en la ejecución de la consulta si cambiamos la primera parte del filtro por `id>900` ? 
+
+<div class="ejercicio">
+<strong>Ejercicios:</strong><br/>
+Ejecuta las siguientes consultas, observa el plan de ejecución y argumenta el resultado de la columna <em>type</em>.
+<br/><br/>
+<ul>
+<li><code>Select nombre from empleados where apellidos='Perez';</code></li>
+<li>
+<code>Select count(*) from empleados;</code>
+</li>
+<li>
+    <code>Select * from empleados where id>=20 and id<=30;</code>
+</li>
+<br/>
+<div style="text-align:center;">
+    <a href="http://sqlfiddle.com/#!9/37b7f4/12" target="_blank">Click aquí para ejecutar las consultas</a>
+</div>
+</div>
+<br/>
+
+<br/><br/>
 
 <style>
     *{
