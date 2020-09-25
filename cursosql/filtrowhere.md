@@ -201,7 +201,7 @@ O bien desde la definición de la tabla:
 Ejecutando nuevamente la consulta, con el índice sobre la *fecha_nacimiento* agregado, el costo de ejecución mejora notablemente debido a que se utiliza el índice para buscar los datos. Ejecuta la consulta y compara el plan de ejecución.
 
 <div class="sugerencia">
-    <img src="imagenes/test.png">
+    <img src="imagenes/test.png" style="width:90% !important;">
     <a href="http://sqlfiddle.com/#!9/ee3f0c/1/0" target="_blank">Prueba la ejecución de la consulta haciendo click aquí.</a>    
 </div>
 <br/><br/>
