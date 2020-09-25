@@ -221,7 +221,7 @@ Como puedes notar el predicado del filtro *where* es más complejo, entonces, co
 <br/><br/>
 
 <div class="img-centrada">
-    <img src="imagenes/planejecucion2.png" style="width:90% !important;" /><br/>
+    <img src="imagenes/planejecucion2.png" style="max-width:100% !important;" /><br/>
     <strong>Figura 3.2. Plan de ejecución para filtro por id y fecha de nacimiento.</strong>
 </div>
 
