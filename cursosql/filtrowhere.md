@@ -140,7 +140,38 @@ Supongamos que queremos saber el nombre y apellido de todos los empleados que te
 ```SQL
     Select nombre, apellidos from empleados where id<100 and nombre like '%Juan%';
 ```
-
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>range</em></strong></td>
+                <td>PRIMARY</td>
+                <td>PRIMARY</td>
+                <td>4</td>
+                <td></td>
+                <td>99</td>
+                <td></td>
+                <td>Using where</td>
+            </tr>
+    </table>    
+</div>
+<br/>
 
 ¿Qué operaciones ejecutará la BD cuando mandemos la consulta?. Para responder a este cuestionamiento ejecutemos la consulta y observemos el plan de ejecución.
 
