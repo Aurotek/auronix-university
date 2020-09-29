@@ -140,6 +140,8 @@ Supongamos que queremos saber el nombre y apellido de todos los empleados que te
 ```SQL
     Select nombre, apellidos from empleados where id<100 and nombre like '%Juan%';
 ```
+
+
 ¿Qué operaciones ejecutará la BD cuando mandemos la consulta?. Para responder a este cuestionamiento ejecutemos la consulta y observemos el plan de ejecución.
 
 <div class="sugerencia">
@@ -165,6 +167,38 @@ La búsqueda por rangos se implementa haciendo uso de los operadores `<, > y bet
 ```SQL
     Select count(fecha_nacimiento) from empleados where fecha_nacimiento between '1970-01-01' and '1970-12-31';
 ```
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>ALL</em></strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>985</td>
+                <td></td>
+                <td>Using where</td>
+            </tr>
+    </table>    
+</div>
+<br/>
 
 <div class="sugerencia">
     <img src="imagenes/test.png">
@@ -200,6 +234,39 @@ O bien desde la definición de la tabla:
 {:.justificado}
 Ejecutando nuevamente la consulta, con el índice sobre la *fecha_nacimiento* agregado, el costo de ejecución mejora notablemente debido a que se utiliza el índice para buscar los datos. Ejecuta la consulta y compara el plan de ejecución.
 
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>range</em></strong></td>
+                <td>nacimiento</td>
+                <td>nacimiento</td>
+                <td>4</td>
+                <td></td>
+                <td>28</td>
+                <td></td>
+                <td>Using where;Using index</td>
+            </tr>
+    </table>    
+</div>
+<br/>
+
 <div class="sugerencia">
     <img src="imagenes/test.png">
     <a href="http://sqlfiddle.com/#!9/ee3f0c/1/0" target="_blank">Prueba la ejecución de la consulta haciendo click aquí.</a>    
@@ -212,6 +279,39 @@ La tabla ahora cuenta con dos índices, uno primario (id) y otro que acepta repe
 ```SQL
     Select count(*) from empleados where id>300 and id<500 and fecha_nacimiento between '1970-01-01' and '1970-12-31';
 ```
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>range</em></strong></td>
+                <td>PRIMARY, nacimiento</td>
+                <td>nacimiento</td>
+                <td>8</td>
+                <td></td>
+                <td>28</td>
+                <td></td>
+                <td>Using where;Using index</td>
+            </tr>
+    </table>    
+</div>
+<br/>
+
 Como puedes notar el predicado del filtro *where* es más complejo, entonces, como decide el manejador usar los índices en esta caso?. Probemos la consulta y analicemos el plan de ejecución:
 
 <div class="sugerencia">
@@ -226,7 +326,7 @@ Como puedes notar el predicado del filtro *where* es más complejo, entonces, co
 </div>
 
 {:.justificado}
-Si observas detenidamente la figura 3.2, encontrarás que la BD consideró ambos índices, la columna *possible keys* en el plan de ejecución lo evidencia, sin embargo, el plan eligió el índice con repeticiones (*nacimiento* en la columna *key*) para encontrar los datos. Parecería que el plan de ejecución está equivocado porque el índice primario tiene solo claves únicas, pero si obligamos al motor a usar el índice primario sobre el *id*, confirmaremos que tomó la mejor decisión.
+Si observas detenidamente la *figura 3.2*, encontrarás que la BD consideró ambos índices, la columna *possible keys* en el plan de ejecución lo evidencia, sin embargo, el plan eligió el índice con repeticiones (*nacimiento* en la columna *key*) para encontrar los datos. Parecería que el plan de ejecución está equivocado porque el índice primario tiene solo claves únicas, pero si obligamos al motor a usar el índice primario sobre el *id*, confirmaremos que tomó la mejor decisión.
 
 Prueba la consulta forzando el uso del índice primario y compara el rendimiento.
 
@@ -234,13 +334,46 @@ Prueba la consulta forzando el uso del índice primario y compara el rendimiento
     Select count(*) from empleados force index(PRIMARY) where id>300 and id<500 and fecha_nacimiento between '1970-01-01' and '1970-12-31';
 ```
 
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>range</em></strong></td>
+                <td>PRIMARY</td>
+                <td>PRIMARY</td>
+                <td>4</td>
+                <td></td>
+                <td>199</td>
+                <td></td>
+                <td>Using where;Using index</td>
+            </tr>
+    </table>    
+</div>
+<br/>
+
 Analiza ambas consultas y argumenta, ¿Por qué crees que ocurra esto?
 
 <div class="ejercicio">
-    <strong>Ejercicios:</strong><br/>
+    <strong>Ejercicios 3.1:</strong><br/>
     Ejecuta las siguientes consultas, observa el plan de ejecución y argumenta el resultado de la columna <em>type</em>.
     <br/><br/>
-    <ul>
+    <ol>
         <li>
             <code>Select nombre from empleados where apellidos='Perez';</code>
         </li>
@@ -250,13 +383,73 @@ Analiza ambas consultas y argumenta, ¿Por qué crees que ocurra esto?
         <li>
             <code>Select * from empleados where id>=20 and id<=30;</code>
         </li>
-    </ul>
+    </ol>
     <br/>
     <div style="text-align:center;">
         <a href="http://sqlfiddle.com/#!9/37b7f4/12" target="_blank">Click aquí para ejecutar las consultas</a>
     </div>
 </div>
 <br/>
+
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql para Ejercicios 3.1:</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>ALL</em></strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>985</td>
+                <td></td>
+                <td>Using where;</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>index</em></strong></td>
+                <td></td>
+                <td>nacimiento</td>
+                <td>4</td>
+                <td></td>
+                <td>985</td>
+                <td></td>
+                <td>Using index</td>
+            </tr>
+             <tr>
+                <td>3</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>range</em></strong></td>
+                <td>PRIMARY</td>
+                <td>PRIMARY</td>
+                <td>4</td>
+                <td></td>
+                <td>11</td>
+                <td></td>
+                <td>Using where</td>
+            </tr>
+    </table>    
+</div>
+<br/>
+
 
 <style>
     *{
