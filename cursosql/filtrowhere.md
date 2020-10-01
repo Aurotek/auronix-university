@@ -6,7 +6,7 @@
     <div class="h-der">
         <a href="indiceslentos.html"><img src="imagenes/previous.png"/></a>
         <a href="../"><img src="imagenes/home.png"/></a>
-        <a href="#"><img src="imagenes/next.png"/></a>
+        <a href="indicesconcatenados.html"><img src="imagenes/next.png"/></a>
     </div>   
 </div>
  
