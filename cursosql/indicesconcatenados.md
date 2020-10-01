@@ -1220,8 +1220,11 @@ ALTER TABLE `empleados`  ADD UNIQUE KEY `id_empleado_sucursal` (`id`,`id_s`);
     function copyscript()
     {
         var scrp=document.getElementById("script-sql1");
+        scrp.style.display="inline";
         console.log("copiado");
         scrp.select();
+        scrp.setSelectionRange(0, 999999);
         document.execCommand("copy");
+        scrp.style.display="none";
     }
 </script>
