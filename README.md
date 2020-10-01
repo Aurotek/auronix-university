@@ -12,6 +12,7 @@ Hola, bienvenido a **Auronix University**, un espacio donde encontrarás una bas
   * [Arquitectura de los índices](cursosql/estructuraindice.md)
   * [Índices lentos](cursosql/indiceslentos.md)
   * [La cláusula where](cursosql/filtrowhere.md)
+  * [Índices multicolumna](cursosql/indicesconcatenados.md)
 * El ambiente de desarrollo Nova
   * [Primeros pasos]()
 

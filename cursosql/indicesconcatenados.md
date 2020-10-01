@@ -1,4 +1,15 @@
 <link rel="stylesheet" type="text/css" href="estilos.css">
+<div class="encabezado">
+    <div class="h-izq">
+        <h1 class="titulo-h1">Auronix University | <em>Curso SQL</em></h1>
+    </div>
+    <div class="h-der">
+        <a href="filtrowhere.html"><img src="imagenes/previous.png"/></a>
+        <a href="../"><img src="imagenes/home.png"/></a>
+        <a href="#"><img src="imagenes/next.png"/></a>
+    </div>   
+</div>
+ 
 
 ### Índices multicolumna ###
 
