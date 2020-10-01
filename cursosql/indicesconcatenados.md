@@ -76,6 +76,95 @@ La columna *type* en el plan de ejecución nos confirma el acceso logarítmico a
     <strong>Figura 4.1. Índice multicolumna.</strong>
 </div>
 
+{:.justificado}
+La *figura 4.1* muestra una aproximación de la estructura que tiene el índice, nota que aunque pareciera que las dos columnas son independientes en realidad ambas forman la llave, estas dos columnas que forman el índice compuesto tienen una relación de dependencia, es decir, la segunda columna depende de la primera, si se tiene que mover una llave, se mueven ambas columnas. Observemos la entrada `123, 27` en la lista de nodos hoja, esta llave representa a todo el nodo (porque es la mayor del conjunto respecto a la primera columna), por lo tanto, se inserta en el nodo padre manteniendo el orden ascendente respecto a la columna *id*.
+
+{:.justificado}
+Debido a la relación de dependencia que tiene la segunda columna respecto a la primera, las búsquedas que involucren únicamente el campo *id* harán uso del índice mientras que aquellas que solo busquen por el campo *id_s* ignoran el índice. Aclaremos con dos ejemplos:
+
+```SQL
+    SELECT nombre, apellidos FROM empleados where id=123;
+```
+
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>ref</em></strong></td>
+                <td>id_empleado_sucursal</td>
+                <td>id_empleado_sucursal</td>
+                <td>4</td>
+                <td>const</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+            </tr>
+    </table>    
+</div>
+<br/>
+
+<div class="resumen">
+    <img src="imagenes/idea.png">
+    Cuando la columna <em>type</em> del plan de ejecución muestra <strong><em>ref</em></strong> significa que se uso una comparación de igualda exacta <code>[=]</code> en el predicado. Si despliega <strong><em>range</em></strong> quiere decir que se usó un operador de rango en el predicado <code>[>,<,>=,<=, between]</code>
+    <strong><em>insert</em></strong>, <strong><em>delete</em></strong> y <strong><em>update</em></strong>.
+</div>
+
+{:.justificado}
+El plan de ejecución muestra que la consulta por el campo *id* usó el índice para encontrar los registros, ¿Que ocurre si buscamos unicamente por el campo *id_s*?.
+
+```SQL
+    SELECT nombre, apellidos FROM empleados where id_s=20;
+```
+
+<div class="ejercicio execution-plan">
+    <strong>Plan de ejecución MySql</strong><br/><br/>
+    <table class="">
+            <tr>
+                <th>id</th>
+                <th>select_type</th>
+                <th>table</th>
+                <th>type</th>
+                <th>possible_keys</th>
+                <th>key</th>
+                <th>key_len</th>
+                <th>ref</th>
+                <th>rows</th>
+                <th>filtered</th>
+                <th>Extra</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SIMPLE</td>
+                <td>empleados</td>
+                <td><strong><em style='color:blue;'>ALL</em></strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1000</td>
+                <td></td>
+                <td>Using where</td>
+            </tr>
+    </table>    
+</div>
+<br/>
+
 
 
 

@@ -75,14 +75,15 @@
         width:100%;
     }
     .resumen{
+        border:dashed brown 1px !important;
         width:100%;
         margin:0px auto;
-        background:#000;
-        color:white;
+        background:#ffff8887;
+        color:#240101;
         padding:1em;
         border-radius:10px;
         text-align:justify;
-        box-shadow:0px 0px 5px gray;
+        box-shadow:0px 0px 5px #f3a81e;
         position:relative;
         padding-left:25px;
     }
