@@ -185,7 +185,7 @@ Como estamos búscando por la segunda columna del índice concatenado y esta en 
 </div><br>
 
 {:.justificado}
-Para probar las consula de ejemplo copia el script sql <a href="javascript:copyscript();">haciendo click aquí</a> luego pégalo en la herramienta online <a href="https://rextester.com/l/mysql_online_compiler" target="_blank">rextester</a>. Esta herramienta conserva los objetos que se crean, verifica primero si ya existe la tabla haciendo un select, si no es el caso pega el script, ejecútalo y prueba las consultas.
+Para probar las consultas de ejemplo copia el script sql <a href="javascript:copyscript();">haciendo click aquí</a> luego pégalo en la herramienta online <a href="https://rextester.com/l/mysql_online_compiler" target="_blank">rextester</a>. Esta herramienta conserva los objetos que se crean, verifica primero si ya existe la tabla haciendo un select, si no es el caso pega el script, ejecútalo y prueba las consultas.
 <br>
 <br>
 <style>
