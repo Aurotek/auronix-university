@@ -4,13 +4,12 @@
         <h1 class="titulo-h1">Auronix University | <em>Curso SQL</em></h1>
     </div>
     <div class="h-der">
-        <a href="filtrowhere.html"><img src="imagenes/previous.png"/></a>
+        <a href="indiceslentos.html"><img src="imagenes/previous.png"/></a>
         <a href="../"><img src="imagenes/home.png"/></a>
         <a href="#"><img src="imagenes/next.png"/></a>
     </div>   
 </div>
  
-
 ### Índices multicolumna ###
 
 {:.justificado}
@@ -76,4 +75,24 @@ La columna *type* en el plan de ejecución nos confirma el acceso logarítmico a
     <img src="imagenes/indicecompuesto.png" /><br/>
     <strong>Figura 4.1. Índice multicolumna.</strong>
 </div>
+
+
+
+
+<style>
+    *{
+        box-sizing:border-box !important;
+    }
+    .type-execution-plan th{
+        text-align:center !important;
+
+    }
+    .type-execution-plan td{
+        text-align:justify !important;
+    }
+    .type-execution-plan tr td:first-child{
+        font-style:italic !important;
+    }
+</style>
+
 
