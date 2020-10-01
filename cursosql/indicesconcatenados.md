@@ -10,7 +10,7 @@
     </div>   
 </div>
  
-### Índices multicolumna ###
+# Índices multicolumna #
 
 {:.justificado}
 Un índice concatenado o multicolumna es la unión de dos o más campos que a menudo se emplean para representar un registro de la tabla, con fines didácticos supongamos que en nuestra empresa existen diferentes sucursales y se necesita identificar de forma única a un empleado usando su id y el id de la sucursal donde labora, podemos definir el campo llave de la tabla empleados de la forma `id_empleado,id_sucursal`, a esta unión de dos datos atómicos para representar a una entidad se le conoce como índice multicolumna. Consideremos la siguiente tabla como caso de estudio:
