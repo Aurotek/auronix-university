@@ -4,7 +4,7 @@
         <h1 class="titulo-h1">Auronix University | <em>Curso SQL</em></h1>
     </div>
     <div class="h-der">
-        <a href="indiceslentos.html"><img src="imagenes/previous.png"/></a>
+        <a href="filtrowhere.html"><img src="imagenes/previous.png"/></a>
         <a href="../"><img src="imagenes/home.png"/></a>
         <a href="#"><img src="imagenes/next.png"/></a>
     </div>   
@@ -165,6 +165,27 @@ El plan de ejecución muestra que la consulta por el campo *id* usó el índice 
 </div>
 <br/>
 
+{:.justificado}
+Como estamos búscando por la segunda columna del índice concatenado y esta en realidad no tiene un orden, el manejador de la BD descarta el índice y ejecuta una operación *FULL ACCESS TABLE*. La solución es crear un índice sobre el campo *id_s*, si es que realmente se necesita ejecutar búsquedas de este tipo.
+
+<div class="resumen">
+    <img src="imagenes/idea.png">
+    Cuando se tiene un índice compuesto, se debe poner especial atención a los filtros que involucran los campos del índice. El motor de la BD usará el índice compuesto cuando reciba consultas que respeten el orden de prefijos especificado en el índice. Por ejemplo si existe un índice compuesto (campo1, campo2, campo3) se usará el indice en casos como:
+    <ul>
+        <li><em>campo1=valor1</em></li>
+        <li><em>campo1=valor1 and campo2=valor2</em></li>
+        <li><em>campo1=valor1 and campo2=valor2 and campo3=valor3</em></li>
+    </ul>
+    <br/>
+    El índice será ignorado en consultas con filtros como:
+    <br/>
+    <ul>
+        <li><em>campo2=valor2</em></li>
+        <li><em>campo2=valor2 and campo3=valor3</em></li>
+        <li><em>campo1=valor1 or campo2=valor2</em></li>
+    </ul>
+</div>
+<br/>
 
 
 <style>
