@@ -121,12 +121,12 @@ Debido a la relación de dependencia que tiene la segunda columna respecto a la 
 
 <div class="resumen">
     <img src="imagenes/idea.png">
-    Cuando la columna <em>type</em> del plan de ejecución muestra <strong><em>ref</em></strong> significa que se uso una comparación de igualda exacta <code>=</code> en el predicado. Si despliega <strong><em>range</em></strong> quiere decir que se usó un operador de rango en el predicado <code>>,<,>=,<=, between</code>, en ambos casos se ejecuta una operación <em>INDEX RANGE SCAN</em>.
+    Cuando la columna <em>type</em> del plan de ejecución muestra <strong><em>ref</em></strong> significa que se usó una comparación de igualda exacta <code>=</code> en el predicado. Si despliega <strong><em>range</em></strong> quiere decir que se usó un operador de rango en el predicado <code>>,<,>=,<=, between</code>, en ambos casos se ejecuta una operación <em>INDEX RANGE SCAN</em>.
 </div>
 <br/>
 
 {:.justificado}
-El plan de ejecución muestra que la consulta por el campo *id* usó el índice para encontrar los registros, ¿Que ocurre si buscamos unicamente por el campo *id_s*?.
+El plan de ejecución muestra que la consulta por el campo *id* usó el índice para encontrar los registros, ¿Que ocurre si buscamos únicamente por el campo *id_s*?.
 
 ```SQL
     SELECT nombre, apellidos FROM empleados where id_s=20;
@@ -167,21 +167,11 @@ El plan de ejecución muestra que la consulta por el campo *id* usó el índice 
 
 
 
-
 <style>
     *{
         box-sizing:border-box !important;
     }
-    .type-execution-plan th{
-        text-align:center !important;
-
-    }
-    .type-execution-plan td{
-        text-align:justify !important;
-    }
-    .type-execution-plan tr td:first-child{
-        font-style:italic !important;
-    }
+   
 </style>
 
 

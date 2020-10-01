@@ -118,18 +118,33 @@
         padding:2px;  
     }
     .ejercicio{
-        background:#ebf3fc;
+        background:#f2fae2;
+        border:dotted #1e9516 1px;
         width:100%;
         color:black;
         padding:1em;
-        border-radius:10px;
         text-align:justify;
-        box-shadow:0px 0px 5px black;
         position:relative;
         padding-left:25px;
     }
     .execution-plan{
         overflow-x: auto !important;
+    }
+    .execution-plan table{
+        border:solid #416e11 1px !important;
+        border-collapse: collapse !important;
+    }
+    .execution-plan table tr th{
+        background-color: #416e11 !important;
+        text-align: center !important;
+        color:white;
+    }
+    .execution-plan table tr td{
+        background-color: #fdfefb !important;
+        text-align: center !important;
+    }
+    .execution-plan table tr:last-child{
+
     }
     @media print, screen and (max-width: 720px)
     {
