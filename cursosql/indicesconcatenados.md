@@ -164,7 +164,6 @@ El plan de ejecución muestra que la consulta por el campo *id* usó el índice 
     </table>    
 </div>
 <br/>
-
 {:.justificado}
 Como estamos búscando por la segunda columna del índice concatenado y esta en realidad no tiene un orden, el manejador de la BD descarta el índice y ejecuta una operación *FULL ACCESS TABLE*. La solución es crear un índice sobre el campo *id_s*, si es que realmente se necesita ejecutar búsquedas de este tipo.
 
@@ -176,7 +175,6 @@ Como estamos búscando por la segunda columna del índice concatenado y esta en 
         <li><em>campo1=valor1 and campo2=valor2</em></li>
         <li><em>campo1=valor1 and campo2=valor2 and campo3=valor3</em></li>
     </ul>
-    <br/>
     El índice será ignorado en consultas con filtros como:
     <br/>
     <ul>
