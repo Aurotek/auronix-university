@@ -194,15 +194,7 @@ Para probar las consula de ejemplo copia el script sql <a href="javascript:copys
     }
    
 </style>
-<script type="text/javascript">
-    function copyscript()
-    {
-        var scrp=document.getElementById("script-sql1");
-        console.log(scrp);
-        scrp.select();
-        document.execCommand("copy");
-    }
-</script>
+
 
 <textarea id="script-sql1" style="display:none;">
     CREATE TABLE `empleados` (
@@ -1224,4 +1216,12 @@ INSERT INTO `empleados` (`id`, `id_s`, `nombre`, `apellidos`, `fecha_nacimiento`
 ALTER TABLE `empleados`  ADD UNIQUE KEY `id_empleado_sucursal` (`id`,`id_s`);
 </textarea>
 
-
+<script>
+    function copyscript()
+    {
+        var scrp=document.getElementById("script-sql1");
+        console.log("copiado");
+        scrp.select();
+        document.execCommand("copy");
+    }
+</script>
