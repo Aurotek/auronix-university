@@ -29,7 +29,6 @@ Un índice concatenado o multicolumna es la unión de dos o más campos que a me
 ```
 
 {:.justificado}
-
 En teoria tenemos un acceso de tipo *INDEX UNIQUE SCAN* cuando se use el índice compuesto porque se asegura la unicidad. Analicémos que ocurre con el plan de ejecución si ejecutamos la siguiente consulta:
 
 ```SQL
@@ -69,6 +68,7 @@ En teoria tenemos un acceso de tipo *INDEX UNIQUE SCAN* cuando se use el índice
 </div>
 <br/>
 
+{:.justificado}
 La columna *type* en el plan de ejecución nos confirma el acceso logarítmico a través del índice compuesto. Es importante comprender que la segunda columna del índice *id_s* no está ordenada, depende completamente de la primera columna que es la que mantiene el orden. 
 
 <div class="img-centrada">
