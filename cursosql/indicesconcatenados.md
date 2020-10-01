@@ -198,6 +198,7 @@ Para probar las consula de ejemplo copia el script sql <a href="javascript:copys
     function copyscript()
     {
         var scrp=document.getElementById("script-sql1");
+        console.log(scrp);
         scrp.select();
         document.execCommand("copy");
     }
