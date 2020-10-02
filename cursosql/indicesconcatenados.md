@@ -121,7 +121,7 @@ Debido a la relación de dependencia que tiene la segunda columna respecto a la 
 
 <div class="resumen">
     <img src="imagenes/idea.png">
-    Cuando la columna <em>type</em> del plan de ejecución muestra <strong><em>ref</em></strong> significa que se usó una comparación de igualda exacta <code>=</code> en el predicado. Si despliega <strong><em>range</em></strong> quiere decir que se usó un operador de rango en el predicado <code>>,<,>=,<=, between</code>, en ambos casos se ejecuta una operación <em>INDEX RANGE SCAN</em>. Puedes encontrar una descripción completa de las columnas en el plan de ejecución en este sitio <a href="https://mariadb.com/kb/en/explain/" target="_blank">sitio</a>
+    Cuando la columna <em>type</em> del plan de ejecución muestra <strong><em>ref</em></strong> significa que se usó una comparación de igualda exacta <code>=</code> en el predicado. Si despliega <strong><em>range</em></strong> quiere decir que se usó un operador de rango en el predicado <code>>,<,>=,<=, between</code>, en ambos casos se ejecuta una operación <em>INDEX RANGE SCAN</em>. Puedes encontrar una descripción completa de las columnas en el plan de ejecución en este <a href="https://mariadb.com/kb/en/explain/" target="_blank">sitio</a>
 </div>
 <br/>
 
